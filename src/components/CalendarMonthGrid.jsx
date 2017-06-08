@@ -98,6 +98,8 @@ export default class CalendarMonthGrid extends React.Component {
 
     this.isTransitionEndSupported = isTransitionEndSupported();
     this.onTransitionEnd = this.onTransitionEnd.bind(this);
+    this.onMonthSelect = this.onMonthSelect.bind(this);
+    this.onYearSelect = this.onYearSelect.bind(this);
   }
 
   componentDidMount() {
@@ -156,6 +158,36 @@ export default class CalendarMonthGrid extends React.Component {
 
   onTransitionEnd() {
     this.props.onMonthTransitionEnd();
+  }
+
+  onMonthSelect(currentMonth, newMonthVal) {
+    const { numberOfMonths, orientation } = this.props;
+    const { months } = this.state
+    const withoutTransitionMonths = orientation === VERTICAL_SCROLLABLE;
+    let initialMonthSubtraction = months.indexOf(currentMonth);
+    if (!withoutTransitionMonths) {
+      initialMonthSubtraction--;
+    }
+    currentMonth.set('month', newMonthVal).subtract(initialMonthSubtraction, 'months');
+    const newMonths = getMonths(currentMonth, numberOfMonths, withoutTransitionMonths);
+    this.setState({
+      months: newMonths,
+    })
+  }
+
+  onYearSelect(currentMonth, newYearVal) {
+    const { initialMonth, numberOfMonths, orientation } = this.props;
+    const { months } = this.state;
+    const withoutTransitionMonths = orientation === VERTICAL_SCROLLABLE;
+    let initialMonthSubtraction = months.indexOf(currentMonth);
+    if (!withoutTransitionMonths) {
+      initialMonthSubtraction--;
+    }
+    currentMonth.set('year', newYearVal).subtract(initialMonthSubtraction, 'months');
+    const newMonths = getMonths(currentMonth, numberOfMonths, withoutTransitionMonths);
+    this.setState({
+      months: newMonths,
+    })
   }
 
   render() {
@@ -226,6 +258,8 @@ export default class CalendarMonthGrid extends React.Component {
               onDayMouseEnter={onDayMouseEnter}
               onDayMouseLeave={onDayMouseLeave}
               onDayClick={onDayClick}
+              onMonthSelect={this.onMonthSelect}
+              onYearSelect={this.onYearSelect}
               renderMonth={renderMonth}
               renderDay={renderDay}
               daySize={daySize}
