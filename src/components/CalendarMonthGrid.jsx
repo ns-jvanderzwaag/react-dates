@@ -183,6 +183,7 @@ export default class CalendarMonthGrid extends React.Component {
   }
 
   onYearSelect(currentMonth, newYearVal) {
+    let newMonth = currentMonth.clone()
     const { initialMonth, numberOfMonths, orientation } = this.props;
     const { months } = this.state;
     const withoutTransitionMonths = orientation === VERTICAL_SCROLLABLE;
@@ -190,12 +191,8 @@ export default class CalendarMonthGrid extends React.Component {
     if (!withoutTransitionMonths) {
       initialMonthSubtraction--;
     }
-    currentMonth.set('year', newYearVal).subtract(initialMonthSubtraction, 'months');
-    const newMonths = getMonths(currentMonth, numberOfMonths, withoutTransitionMonths);
-    this.setState({
-      months: newMonths,
-    })
-    this.props.onYearChange(newMonths)
+    newMonth.set('year', newYearVal).subtract(initialMonthSubtraction, 'months');
+    this.props.onYearChange(newMonth)
   }
 
   render() {
