@@ -31,6 +31,7 @@ import {
 
 const propTypes = forbidExtraProps({
   enableOutsideDays: PropTypes.bool,
+  enableDropdowns: PropTypes.bool,
   firstVisibleMonthIndex: PropTypes.number,
   initialMonth: momentPropTypes.momentObj,
   isAnimating: PropTypes.bool,
@@ -57,6 +58,7 @@ const propTypes = forbidExtraProps({
 
 const defaultProps = {
   enableOutsideDays: false,
+  enableDropdowns: false,
   firstVisibleMonthIndex: 0,
   initialMonth: moment(),
   isAnimating: false,
@@ -198,6 +200,7 @@ export default class CalendarMonthGrid extends React.Component {
   render() {
     const {
       enableOutsideDays,
+      enableDropdowns,
       firstVisibleMonthIndex,
       isAnimating,
       modifiers,
@@ -257,6 +260,7 @@ export default class CalendarMonthGrid extends React.Component {
               month={month}
               isVisible={isVisible}
               enableOutsideDays={enableOutsideDays}
+              enableDropdowns={enableDropdowns}
               modifiers={modifiers[monthString]}
               monthFormat={monthFormat}
               orientation={orientation}

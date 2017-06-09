@@ -44,6 +44,7 @@ const YEAR_SELECTION_TRANSITION = 'year_selection';
 const propTypes = forbidExtraProps({
   // calendar presentation props
   enableOutsideDays: PropTypes.bool,
+  enableDropdowns: PropTypes.bool,
   numberOfMonths: PropTypes.number,
   orientation: ScrollableOrientationShape,
   withPortal: PropTypes.bool,
@@ -88,6 +89,7 @@ const propTypes = forbidExtraProps({
 export const defaultProps = {
   // calendar presentation props
   enableOutsideDays: false,
+  enableDropdowns: false,
   numberOfMonths: 2,
   orientation: HORIZONTAL_ORIENTATION,
   withPortal: false,
@@ -757,6 +759,7 @@ export default class DayPicker extends React.Component {
 
     const {
       enableOutsideDays,
+      enableDropdowns,
       numberOfMonths,
       orientation,
       modifiers,
@@ -867,6 +870,7 @@ export default class DayPicker extends React.Component {
                 ref={this.setCalendarMonthGridRef}
                 transformValue={transformValue}
                 enableOutsideDays={enableOutsideDays}
+                enableDropdowns={enableDropdowns}
                 firstVisibleMonthIndex={firstVisibleMonthIndex}
                 initialMonth={currentMonth}
                 isAnimating={isCalendarMonthGridAnimating}

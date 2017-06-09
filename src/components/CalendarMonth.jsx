@@ -31,6 +31,7 @@ const propTypes = forbidExtraProps({
   month: momentPropTypes.momentObj,
   isVisible: PropTypes.bool,
   enableOutsideDays: PropTypes.bool,
+  enableDropdowns: PropTypes.bool,
   modifiers: PropTypes.object,
   orientation: ScrollableOrientationShape,
   daySize: nonNegativeInteger,
@@ -54,6 +55,7 @@ const defaultProps = {
   month: moment(),
   isVisible: true,
   enableOutsideDays: false,
+  enableDropdowns: false,
   modifiers: {},
   orientation: HORIZONTAL_ORIENTATION,
   daySize: DAY_SIZE,
@@ -96,6 +98,7 @@ export default class CalendarMonth extends React.Component {
 
   render() {
     const {
+      enableDropdowns,
       month,
       monthFormat,
       orientation,
@@ -126,7 +129,7 @@ export default class CalendarMonth extends React.Component {
     return (
       <div className={calendarMonthClasses} data-visible={isVisible}>
         <table>
-          {true &&
+          {enableDropdowns &&
             <caption className="CalendarMonth__caption js-CalendarMonth__caption">
               <MonthSelector
                 month={month}
@@ -136,7 +139,7 @@ export default class CalendarMonth extends React.Component {
               />
             </caption>
           }
-          {false &&
+          {!enableDropdowns &&
             <caption className="CalendarMonth__caption js-CalendarMonth__caption">
               <strong>{monthTitle}</strong>
             </caption>

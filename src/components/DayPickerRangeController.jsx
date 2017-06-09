@@ -53,6 +53,7 @@ const propTypes = forbidExtraProps({
   // DayPicker props
   renderMonth: PropTypes.func,
   enableOutsideDays: PropTypes.bool,
+  enableDropdowns: PropTypes.bool,
   numberOfMonths: PropTypes.number,
   orientation: ScrollableOrientationShape,
   withPortal: PropTypes.bool,
@@ -101,6 +102,7 @@ const defaultProps = {
   // DayPicker props
   renderMonth: null,
   enableOutsideDays: false,
+  enableDropdowns: false,
   numberOfMonths: 1,
   orientation: HORIZONTAL_ORIENTATION,
   withPortal: false,
@@ -188,6 +190,7 @@ export default class DayPickerRangeController extends React.Component {
       initialVisibleMonth,
       numberOfMonths,
       enableOutsideDays,
+      enableDropdowns,
     } = nextProps;
     let { visibleDays } = this.state;
 
@@ -797,6 +800,7 @@ export default class DayPickerRangeController extends React.Component {
       onOutsideClick,
       withPortal,
       enableOutsideDays,
+      enableDropdowns,
       initialVisibleMonth,
       hideKeyboardShortcutsPanel,
       daySize,
@@ -816,6 +820,7 @@ export default class DayPickerRangeController extends React.Component {
         ref={(ref) => { this.dayPicker = ref; }}
         orientation={orientation}
         enableOutsideDays={enableOutsideDays}
+        enableDropdowns={enableDropdowns}
         modifiers={visibleDays}
         numberOfMonths={numberOfMonths}
         onDayClick={this.onDayClick}
