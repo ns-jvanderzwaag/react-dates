@@ -16,7 +16,6 @@ import isTransitionEndSupported from '../utils/isTransitionEndSupported';
 import getTransformStyles from '../utils/getTransformStyles';
 import getCalendarMonthWidth from '../utils/getCalendarMonthWidth';
 import toISOMonthString from '../utils/toISOMonthString';
-import isAfterDay from '../utils/isAfterDay';
 import isPrevMonth from '../utils/isPrevMonth';
 import isNextMonth from '../utils/isNextMonth';
 
@@ -172,29 +171,29 @@ export default class CalendarMonthGrid extends React.Component {
   }
 
   onMonthSelect(currentMonth, newMonthVal) {
-    let newMonth = currentMonth.clone()
-    const { numberOfMonths, orientation } = this.props;
-    const { months } = this.state
+    const newMonth = currentMonth.clone();
+    const { orientation } = this.props;
+    const { months } = this.state;
     const withoutTransitionMonths = orientation === VERTICAL_SCROLLABLE;
     let initialMonthSubtraction = months.indexOf(currentMonth);
     if (!withoutTransitionMonths) {
-      initialMonthSubtraction--;
+      initialMonthSubtraction -= 1;
     }
     newMonth.set('month', newMonthVal).subtract(initialMonthSubtraction, 'months');
     this.props.onMonthChange(newMonth);
   }
 
   onYearSelect(currentMonth, newYearVal) {
-    let newMonth = currentMonth.clone()
-    const { initialMonth, numberOfMonths, orientation } = this.props;
+    const newMonth = currentMonth.clone();
+    const { orientation } = this.props;
     const { months } = this.state;
     const withoutTransitionMonths = orientation === VERTICAL_SCROLLABLE;
     let initialMonthSubtraction = months.indexOf(currentMonth);
     if (!withoutTransitionMonths) {
-      initialMonthSubtraction--;
+      initialMonthSubtraction -= 1;
     }
     newMonth.set('year', newYearVal).subtract(initialMonthSubtraction, 'months');
-    this.props.onYearChange(newMonth)
+    this.props.onYearChange(newMonth);
   }
 
   render() {

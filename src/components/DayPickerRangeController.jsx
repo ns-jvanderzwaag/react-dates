@@ -190,7 +190,6 @@ export default class DayPickerRangeController extends React.Component {
       initialVisibleMonth,
       numberOfMonths,
       enableOutsideDays,
-      enableDropdowns,
     } = nextProps;
     let { visibleDays } = this.state;
 
@@ -533,10 +532,10 @@ export default class DayPickerRangeController extends React.Component {
   }
 
   onMonthChange(newMonth) {
-    const { onNextMonthClick, numberOfMonths, enableOutsideDays, orientation } = this.props;
-    const { visibleDays } = this.state;
+    const { numberOfMonths, enableOutsideDays, orientation } = this.props;
     const withoutTransitionMonths = orientation === VERTICAL_SCROLLABLE;
-    const newVisibleDays = getVisibleDays(newMonth, numberOfMonths, enableOutsideDays, withoutTransitionMonths);
+    const newVisibleDays =
+      getVisibleDays(newMonth, numberOfMonths, enableOutsideDays, withoutTransitionMonths);
 
     this.setState({
       currentMonth: newMonth.clone(),
@@ -545,11 +544,10 @@ export default class DayPickerRangeController extends React.Component {
   }
 
   onYearChange(newMonth) {
-    console.log('onYearChange controller', newMonth);
-    const { onNextMonthClick, numberOfMonths, enableOutsideDays, orientation } = this.props;
-    const { visibleDays } = this.state;
+    const { numberOfMonths, enableOutsideDays, orientation } = this.props;
     const withoutTransitionMonths = orientation === VERTICAL_SCROLLABLE;
-    const newVisibleDays = getVisibleDays(newMonth, numberOfMonths, enableOutsideDays, withoutTransitionMonths);
+    const newVisibleDays =
+      getVisibleDays(newMonth, numberOfMonths, enableOutsideDays, withoutTransitionMonths);
 
     this.setState({
       currentMonth: newMonth.clone(),

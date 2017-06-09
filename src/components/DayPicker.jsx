@@ -420,8 +420,8 @@ export default class DayPicker extends React.Component {
   }
 
   onMonthChange(currentMonth) {
-    //Translation value is a hack to force an invisible transition that
-    //properly rerenders the CalendarMonthGrid
+    // Translation value is a hack to force an invisible transition that
+    // properly rerenders the CalendarMonthGrid
     this.setState({
       monthTransition: MONTH_SELECTION_TRANSITION,
       translationValue: 0.00001,
@@ -432,8 +432,8 @@ export default class DayPicker extends React.Component {
   }
 
   onYearChange(currentMonth) {
-    //Translation value is a hack to force an invisible transition that
-    //properly rerenders the CalendarMonthGrid
+    // Translation value is a hack to force an invisible transition that
+    // properly rerenders the CalendarMonthGrid
     this.setState({
       monthTransition: YEAR_SELECTION_TRANSITION,
       translationValue: 0.0001,
@@ -567,7 +567,7 @@ export default class DayPicker extends React.Component {
     } = this.state;
 
     if (!monthTransition) return;
-    let translationValue = (this.props.isRTL && this.isHorizontal()) ? -this.dayPickerWidth : 0
+    const translationValue = (this.props.isRTL && this.isHorizontal()) ? -this.dayPickerWidth : 0;
 
     const newMonth = currentMonth.clone();
     if (monthTransition === PREV_TRANSITION) {
@@ -576,9 +576,9 @@ export default class DayPicker extends React.Component {
     } else if (monthTransition === NEXT_TRANSITION) {
       if (onNextMonthClick) onNextMonthClick();
       newMonth.add(1, 'month');
-    } else if (monthTransition == MONTH_SELECTION_TRANSITION) {
+    } else if (monthTransition === MONTH_SELECTION_TRANSITION) {
       if (onMonthChange) onMonthChange(newMonth);
-    } else if (monthTransition == YEAR_SELECTION_TRANSITION) {
+    } else if (monthTransition === YEAR_SELECTION_TRANSITION) {
       if (onYearChange) onYearChange(newMonth);
     }
 
