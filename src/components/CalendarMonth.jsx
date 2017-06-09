@@ -12,6 +12,7 @@ import { CalendarDayPhrases } from '../defaultPhrases';
 import getPhrasePropTypes from '../utils/getPhrasePropTypes';
 
 import CalendarDay from './CalendarDay';
+import MonthSelector from './MonthSelector';
 
 import getCalendarMonthWeeks from '../utils/getCalendarMonthWeeks';
 import isSameDay from '../utils/isSameDay';
@@ -127,26 +128,12 @@ export default class CalendarMonth extends React.Component {
         <table>
           {true &&
             <caption className="CalendarMonth__caption js-CalendarMonth__caption">
-              <select onChange={(e) => onMonthSelect(month, e.target.value)} value={month.get('month')} className="CalendarMonth__month_select">
-                <option value="0">January</option>
-                <option value="1">February</option>
-                <option value="2">March</option>
-                <option value="3">April</option>
-                <option value="4">May</option>
-                <option value="5">June</option>
-                <option value="6">July</option>
-                <option value="7">August</option>
-                <option value="8">September</option>
-                <option value="9">October</option>
-                <option value="10">November</option>
-                <option value="11">December</option>
-              </select>
-              <select onChange={(e) => onYearSelect(month, e.target.value)} value={month.get('year')} className="CalendarMonth__year_select">
-                <option value="2015">2015</option>
-                <option value="2016">2016</option>
-                <option value="2017">2017</option>
-                <option value="2018">2018</option>
-              </select>
+              <MonthSelector
+                month={month}
+                onYearSelect={onYearSelect}
+                onMonthSelect={onMonthSelect}
+                phrases={phrases}
+              />
             </caption>
           }
           {false &&
