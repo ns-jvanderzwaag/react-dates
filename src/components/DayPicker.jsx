@@ -418,17 +418,11 @@ export default class DayPicker extends React.Component {
   }
 
   onMonthChange(currentMonth) {
-    const { isRTL } = this.props;
-    let translationValue =
-      this.isVertical() ? -this.getMonthHeightByIndex(1) : -this.dayPickerWidth;
-
-    if (isRTL && this.isHorizontal()) {
-      translationValue = 0;
-    }
-
+    //Translation value is a hack to force an invisible transition that
+    //properly rerenders the CalendarMonthGrid
     this.setState({
       monthTransition: MONTH_SELECTION_TRANSITION,
-      translationValue,
+      translationValue: 0.00001,
       focusedDate: null,
       nextFocusedDate: currentMonth,
       currentMonth,
@@ -436,17 +430,11 @@ export default class DayPicker extends React.Component {
   }
 
   onYearChange(currentMonth) {
-    const { isRTL } = this.props;
-    let translationValue =
-      this.isVertical() ? -this.getMonthHeightByIndex(1) : -this.dayPickerWidth;
-
-    if (isRTL && this.isHorizontal()) {
-      translationValue = 0;
-    }
-
+    //Translation value is a hack to force an invisible transition that
+    //properly rerenders the CalendarMonthGrid
     this.setState({
       monthTransition: YEAR_SELECTION_TRANSITION,
-      translationValue,
+      translationValue: 0.0001,
       focusedDate: null,
       nextFocusedDate: currentMonth,
       currentMonth,
