@@ -126,10 +126,10 @@ export default class CalendarMonthGrid extends React.Component {
     let newMonths = months;
 
     if (hasMonthChanged && !hasNumberOfMonthsChanged) {
-      if (isNextMonth(initialMonth, this.props.initialMonth)) {
+      if (isNextMonth(this.props.initialMonth, initialMonth)) {
         newMonths = months.slice(1);
         newMonths.push(months[months.length - 1].clone().add(1, 'month'));
-      } else if (isPrevMonth(initialMonth, this.props.initialMonth)) {
+      } else if (isPrevMonth(this.props.initialMonth, initialMonth)) {
         newMonths = months.slice(0, months.length - 1);
         newMonths.unshift(months[0].clone().subtract(1, 'month'));
       } else {
