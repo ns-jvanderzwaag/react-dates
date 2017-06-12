@@ -567,7 +567,6 @@ export default class DayPicker extends React.Component {
     } = this.state;
 
     if (!monthTransition) return;
-    const translationValue = (this.props.isRTL && this.isHorizontal()) ? -this.dayPickerWidth : 0;
 
     const newMonth = currentMonth.clone();
     if (monthTransition === PREV_TRANSITION) {
@@ -604,7 +603,7 @@ export default class DayPicker extends React.Component {
     this.setState({
       currentMonth: newMonth,
       monthTransition: null,
-      translationValue,
+      translationValue: (this.props.isRTL && this.isHorizontal()) ? -this.dayPickerWidth : 0,
       nextFocusedDate: null,
       focusedDate: newFocusedDate,
     }, () => {
