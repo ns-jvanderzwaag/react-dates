@@ -1,5 +1,5 @@
 {
-  "name": "react-dates",
+  "name": "@narrativescience/react-dates",
   "version": "12.1.2",
   "description": "A responsive and accessible date range picker component built with React",
   "main": "index.js",
@@ -39,14 +39,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/airbnb/react-dates.git"
+    "url": "git+https://github.com/narrativescience/react-dates.git"
   },
-  "author": "Maja Wichrowska <maja.wichrowska@airbnb.com>",
+  "author": "Jordan VanderZwaag <jvanderzwaag@narrativescience.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/airbnb/react-dates/issues"
+    "url": "https://github.com/narrativescience/react-dates/issues"
   },
-  "homepage": "https://github.com/airbnb/react-dates#readme",
+  "homepage": "https://github.com/narrativescience/react-dates#readme",
   "devDependencies": {
     "@kadira/react-storybook-addon-info": "^3.3.0",
     "@kadira/storybook": "^2.35.3",
