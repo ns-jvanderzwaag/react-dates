@@ -53,6 +53,7 @@ const propTypes = forbidExtraProps({
   // DayPicker props
   renderMonth: PropTypes.func,
   enableOutsideDays: PropTypes.bool,
+  enableDropdowns: PropTypes.bool,
   numberOfMonths: PropTypes.number,
   orientation: ScrollableOrientationShape,
   withPortal: PropTypes.bool,
@@ -65,6 +66,8 @@ const propTypes = forbidExtraProps({
 
   onPrevMonthClick: PropTypes.func,
   onNextMonthClick: PropTypes.func,
+  onMonthChange: PropTypes.func,
+  onYearChange: PropTypes.func,
   onOutsideClick: PropTypes.func,
   renderDay: PropTypes.func,
   renderCalendarInfo: PropTypes.func,
@@ -100,6 +103,7 @@ const defaultProps = {
   // DayPicker props
   renderMonth: null,
   enableOutsideDays: false,
+  enableDropdowns: false,
   numberOfMonths: 1,
   orientation: HORIZONTAL_ORIENTATION,
   withPortal: false,
@@ -112,6 +116,8 @@ const defaultProps = {
 
   onPrevMonthClick() {},
   onNextMonthClick() {},
+  onMonthChange() {},
+  onYearChange() {},
   onOutsideClick() {},
 
   renderDay: null,
@@ -167,6 +173,8 @@ export default class DayPickerRangeController extends React.Component {
     this.onDayMouseLeave = this.onDayMouseLeave.bind(this);
     this.onPrevMonthClick = this.onPrevMonthClick.bind(this);
     this.onNextMonthClick = this.onNextMonthClick.bind(this);
+    this.onMonthChange = this.onMonthChange.bind(this);
+    this.onYearChange = this.onYearChange.bind(this);
     this.onMultiplyScrollableMonths = this.onMultiplyScrollableMonths.bind(this);
     this.getFirstFocusableDay = this.getFirstFocusableDay.bind(this);
   }
@@ -525,6 +533,30 @@ export default class DayPickerRangeController extends React.Component {
     onNextMonthClick();
   }
 
+  onMonthChange(newMonth) {
+    const { numberOfMonths, enableOutsideDays, orientation } = this.props;
+    const withoutTransitionMonths = orientation === VERTICAL_SCROLLABLE;
+    const newVisibleDays =
+      getVisibleDays(newMonth, numberOfMonths, enableOutsideDays, withoutTransitionMonths);
+
+    this.setState({
+      currentMonth: newMonth.clone(),
+      visibleDays: this.getModifiers(newVisibleDays),
+    });
+  }
+
+  onYearChange(newMonth) {
+    const { numberOfMonths, enableOutsideDays, orientation } = this.props;
+    const withoutTransitionMonths = orientation === VERTICAL_SCROLLABLE;
+    const newVisibleDays =
+      getVisibleDays(newMonth, numberOfMonths, enableOutsideDays, withoutTransitionMonths);
+
+    this.setState({
+      currentMonth: newMonth.clone(),
+      visibleDays: this.getModifiers(newVisibleDays),
+    });
+  }
+
   onMultiplyScrollableMonths() {
     const { numberOfMonths, enableOutsideDays } = this.props;
     const { currentMonth, visibleDays } = this.state;
@@ -810,6 +842,8 @@ export default class DayPickerRangeController extends React.Component {
       withPortal,
       enableOutsideDays,
       firstDayOfWeek,
+      enableDropdowns,
+      initialVisibleMonth,
       hideKeyboardShortcutsPanel,
       daySize,
       focusedInput,
@@ -821,13 +855,14 @@ export default class DayPickerRangeController extends React.Component {
       isRTL,
     } = this.props;
 
-    const { currentMonth, phrases, visibleDays } = this.state;
+    const { phrases, visibleDays } = this.state;
 
     return (
       <DayPicker
         ref={(ref) => { this.dayPicker = ref; }}
         orientation={orientation}
         enableOutsideDays={enableOutsideDays}
+        enableDropdowns={enableDropdowns}
         modifiers={visibleDays}
         numberOfMonths={numberOfMonths}
         onDayClick={this.onDayClick}
@@ -835,12 +870,14 @@ export default class DayPickerRangeController extends React.Component {
         onDayMouseLeave={this.onDayMouseLeave}
         onPrevMonthClick={this.onPrevMonthClick}
         onNextMonthClick={this.onNextMonthClick}
+        onMonthChange={this.onMonthChange}
+        onYearChange={this.onYearChange}
         onMultiplyScrollableMonths={this.onMultiplyScrollableMonths}
         monthFormat={monthFormat}
         renderMonth={renderMonth}
         withPortal={withPortal}
         hidden={!focusedInput}
-        initialVisibleMonth={() => currentMonth}
+        initialVisibleMonth={initialVisibleMonth}
         daySize={daySize}
         onOutsideClick={onOutsideClick}
         navPrev={navPrev}
