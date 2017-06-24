@@ -87,6 +87,7 @@ const defaultProps = {
   // day presentation and interaction related props
   renderDay: null,
   enableOutsideDays: false,
+  enableDropdowns: false,
   isDayBlocked: () => false,
   isOutsideRange: day => !isInclusivelyAfterDay(day, moment()),
   isDayHighlighted: () => {},
@@ -670,6 +671,7 @@ export default class SingleDatePicker extends React.Component {
   renderDayPicker() {
     const {
       enableOutsideDays,
+      enableDropdowns,
       numberOfMonths,
       orientation,
       monthFormat,
@@ -702,6 +704,7 @@ export default class SingleDatePicker extends React.Component {
         <DayPicker
           orientation={orientation}
           enableOutsideDays={enableOutsideDays}
+          enableDropdowns={enableDropdowns}
           modifiers={visibleDays}
           numberOfMonths={numberOfMonths}
           onDayClick={this.onDayClick}
