@@ -1,5 +1,8 @@
 # Change Log
 
+## v12.2.0
+- [new] Add `enableDropdowns` prop ([#1](https://github.com/narrativescience/react-dates/pull/1))
+
 ## v12.1.2
 - [fix] Add null check for calendarMonthGrid ref ([#552](https://github.com/airbnb/react-dates/pull/552))
 
