@@ -1,5 +1,5 @@
 {
-  "name": "@narrativescience/react-dates",
+  "name": "react-dates",
   "version": "12.1.2",
   "description": "A responsive and accessible date range picker component built with React",
   "main": "index.js",
