@@ -1,5 +1,8 @@
 # Change Log
 
+## v12.2.1
+- Publish with lib/ directory included
+
 ## v12.2.0
 - [new] Add `enableDropdowns` prop ([#1](https://github.com/narrativescience/react-dates/pull/1))
 
