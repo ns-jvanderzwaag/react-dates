@@ -24,6 +24,15 @@ To run that demo on your own computer:
 * `npm run storybook`
 * Visit http://localhost:9001/
 
+## Building the package for Narrative Science
+
+To build the package, run `npm run version:<type>`, where type is one of
+patch, minor, or major. This requires you to have a change in the CHANGELOG.md
+that summarizes the changes in this new version. The script will then bump the
+version and commit the version and the CHANGELOG, then build the package,
+create a new release tag and push the tag with the built assets. That version
+should then be referenced in both the Nix and Grunt environments.
+
 ## Getting Started
 ### Install dependencies
 Ensure packages are installed with correct version numbers by running:
